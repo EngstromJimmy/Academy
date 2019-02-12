@@ -1,2 +1,4 @@
 var message="Hello Academy";
-console.log(message);
+//Doesn't work
+console.log(global.message);
+
