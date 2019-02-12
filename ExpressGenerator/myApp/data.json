@@ -1,0 +1,28 @@
+{
+    "books":[
+        {
+            "id":0,
+            "name":"Programming th Z80",
+            "authorid":0
+        }
+    ],
+    "authors":[
+        {
+            "id":0,
+            "name":"Rodnay Zaks"
+        }
+    ],
+    "loans":[
+        {
+            "bookid":0,
+            "userid":0
+        }
+    ],
+    "users":[
+        {
+            "id":0,
+            "name":"Jimmy Engström"
+        }
+    ]
+
+}

@@ -1,0 +1,13 @@
+###Get all books
+get http://localhost:3000/books
+
+
+###Delete a book
+delete http://localhost:3000/books/0
+
+###Add a book
+post http://localhost:3000/books/An new book/0
+
+###Get loans
+get http://localhost:3000/loans
+
