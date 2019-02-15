@@ -1,0 +1,12 @@
+ <form action="/edit" method="POST">
+    <input type="hidden" name="_id" value="@model.todo._id">
+    Done<br/>
+    <input type="checkbox" name="isDone" @(model.todo.isDone?'checked=checked':'')/>
+
+    Text:<br/>
+    <input type="text" name="text" value="@model.todo.text"/><br/>
+    Assigned to:<br/>
+    <input type="text" name="assignedTo" value="@model.todo.assignedTo"/>
+    <br/>
+    <button type="submit" value="Add">Update</button>
+</form>

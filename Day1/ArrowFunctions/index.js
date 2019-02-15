@@ -25,5 +25,6 @@ const ages=people.map(function(person){
     return person.age;
 });
 console.log(ages);
+
 const newages=people.map(person=>person.age);
 console.log(newages);

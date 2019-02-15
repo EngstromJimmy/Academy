@@ -1,0 +1,15 @@
+@html.extend('template',function (model){
+    @html.block("body",function (model){
+        <h1> @model.title </h1>
+        <ul>
+        @model.todos.forEach(function(item){
+            <li><a href="/edit/@item._id">@item.text - @item.assignedTo</a> </li>
+        })
+        </ul>
+        <form action="todo" method="POST">
+            <input type="text" name="text"/>
+            <input type="text" name="assignedTo"/>
+            <button type="submit" value="Add"></button>
+        </form>
+    })
+})
