@@ -7,7 +7,7 @@ var controllers =require("./controllers");
 
 //Open db connection
 var mongoClient = require("mongodb").MongoClient;
-mongoClient.connect("MONGOCONNECTIONSTRING", {useNewUrlParser: true},function (err, client) {    
+mongoClient.connect("MONGODBCONNECTIONSTRING", {useNewUrlParser: true},function (err, client) {    
      app.locals.db = client.db('tododb');
 });
 

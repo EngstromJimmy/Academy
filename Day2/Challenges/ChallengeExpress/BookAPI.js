@@ -8,6 +8,7 @@ var data=require("./data")
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.get("/Books",
 (req,res)=>{
     res.send(data.books);

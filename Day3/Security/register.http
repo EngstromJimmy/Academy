@@ -1,0 +1,4 @@
+post http://localhost:8080/register
+content-type: application/json
+
+{"userName":"jimmy","password":"@cademy"}

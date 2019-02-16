@@ -1,0 +1,3 @@
+C:\Presentations\Academy\Demos\Day3\Security\obj\Debug\Security.njsprojAssemblyReference.cache
+C:\Presentations\Academy\Demos\Day3\Security\obj\Debug\Security.njsproj.CoreCompileInputs.cache
+C:\Presentations\Academy\Demos\Day3\Security\bin\Microsoft.NodejsTools.WebRole.dll
