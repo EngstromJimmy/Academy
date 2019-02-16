@@ -1,0 +1,56 @@
+get http://localhost:8080/books
+
+### 
+get http://localhost:8080/booksfull
+
+###
+get http://localhost:8080/book/2
+
+###
+get http://localhost:8080/book/1337
+
+###
+post http://localhost:8080/book
+content-type: application/json
+
+{"Name":"A new book"}
+
+###
+put http://localhost:8080/book
+content-type: application/json
+
+{"Id":1,"Name":"A changed book"}
+
+###
+delete http://localhost:8080/book/1
+
+
+
+###
+
+
+
+#Authors
+
+get http://localhost:8080/authors
+
+###
+get http://localhost:8080/author/2
+
+###
+get http://localhost:8080/author/1337
+
+###
+post http://localhost:8080/author
+content-type: application/json
+
+{"Name":"A new author"}
+
+###
+put http://localhost:8080/author
+content-type: application/json
+
+{"Id":1,"Name":"A changed author"}
+
+###
+delete http://localhost:8080/book/1
