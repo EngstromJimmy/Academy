@@ -1,0 +1,16 @@
+get http://localhost:8080/books
+
+###
+get http://localhost:8080/books/1
+
+###
+post http://localhost:8080/books/
+content-type:application/json
+
+{"Name":"A new book"}
+###
+put http://localhost:8080/books/
+content-type:application/json
+
+{"Id":2,"Name":"A changed book"}
+
