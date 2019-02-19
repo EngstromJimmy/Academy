@@ -15,7 +15,9 @@ const argv=require("yargs")
         type:"number"
         }).argv;
 
+
         const {number1,number2}=argv;
+
         inquirer.prompt([{
             type:"list",
             name:"operator",
