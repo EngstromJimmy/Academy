@@ -1,8 +1,0 @@
-npm i express-generator
-express myApp (Skapar en ny mapp med an massa saker)
-Gå in i den mappen
-Kör NPM install (för att installera alla paket)
-localhost:3000
-npm i pug --save
-rename .jade
-npm install nodemon -g
