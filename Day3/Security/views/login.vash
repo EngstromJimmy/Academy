@@ -7,6 +7,7 @@
     <div>
         <label>Password:</label>
         <input type="password" name="password"/>
+        <div style="color:red">@model.error</div>
     </div>
     <div>
         <input type="submit" value="Log In"/>

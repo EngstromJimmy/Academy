@@ -1,6 +1,9 @@
 const express=require("express");
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
+
+
+
 const app=express();
 const port =8080;
 
@@ -8,6 +11,9 @@ const port =8080;
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Flash
+var flash=require("connect-flash");
+app.use(flash());
 
 //app.use(express.static("public"));
 app.set("view engine", "vash");
@@ -19,16 +25,21 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
+  {  passReqToCallback : true},
+  function(flash,username, password, done) {
     var u=data.users.find( user=> user.username==username);
       if (!u) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (hasher.computeHash(u.salt,password)==u.password)
+      if (hasher.computeHash(u.salt,password)==u.passwordHash)
+      {
+        return done(null, u);
+      }
+      else
       {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, u);
+      
   }
 ));
 
@@ -36,27 +47,34 @@ passport.serializeUser(function(user, done) {
     done(null, user);
   });
   
-  passport.deserializeUser(function(user, done) {
-    done(null, user);
-  });
-  app.use(cookieParser())
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+
+  app.use(cookieParser());
   app.use(session({
-    secret: 'keyboard cat',
-  }))
+    secret: 'mySecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/login',(req,res)=>{
-    res.render("login");
+  res.render("login",{error:req.flash('error')});
 });
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
+app.post('/login',(req,res)=>{
+  passport.authenticate('local', 
+  { 
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true})(req,res);
+  });
 
 
-);
 
 app.get("/register",(req,res)=>{
     
@@ -64,9 +82,15 @@ app.get("/register",(req,res)=>{
 });
 app.get("/",ensureAuthenticated,(req,res)=>{
     console.log(req.user);
-    res.render("index",{"user":req.user});
+    res.render("index",{"user":req.user,error:req.flash('error')});
 });
 
+app.get("/logout",(req,res)=>{
+  console.log(req.user);
+  req.user=null;
+  req.logOut();
+  res.redirect("/");
+});
 
 app.post("/register",(req,res)=>{
     var user={"username":req.body.userName,"salt":"",passwordHash:""};
@@ -78,7 +102,7 @@ app.post("/register",(req,res)=>{
 });
 
 app.get("/api",ensureApiAuthenticated,(req,res)=>{
-    res.send({"name":"Jimmy"});
+    res.send({"name":"Inloggad!"});
 })
 
 

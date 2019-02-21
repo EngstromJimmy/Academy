@@ -63,7 +63,7 @@ app.get("/booksfull",function(req,res){
     res.end();
 });
 
-//Creates a url /books/it and if it gets called executes
+//Creates a url /books/id and if it gets called executes
 //the function and return a single book object
 app.get("/books/:id",function(req,res){
     var bookid=req.params.id;

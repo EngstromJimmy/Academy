@@ -1,30 +1,27 @@
-// Any copyright is dedicated to the Public Domain.
-// http://creativecommons.org/publicdomain/zero/1.0/
-
-/*********************************************
-This basic climate example logs a stream
-of temperature and humidity to the console.
-*********************************************/
-
-var tessel = require('tessel');
-var climatelib = require('climate-si7020');
+const tessel = require('tessel');
+const climatelib = require('climate-si7020');
+const fetch = require("fetch-node");
 
 var climate = climatelib.use(tessel.port['A']);
 
-climate.on('ready', function () {
-  console.log('Connected to climate module');
+climate.on('ready', ()=> 
+  {
+    climate.readTemperature('c',(err, temp)=> 
+    {
+        climate.readHumidity((err, hum)=>
+        {
+          console.log('Degrees:', temp.toFixed(1) + 'C', 'Humidity:', hum.toFixed(1) + '%RH');
+          const body = { "location":"Jimmy","temp":13,"hum":37 };
+          var request = require('request');
 
-  // Loop forever
-  setImmediate(function loop () {
-    climate.readTemperature('f', function (err, temp) {
-      climate.readHumidity(function (err, humid) {
-      console.log('Degrees:', temp.toFixed(4) + 'F', 'Humidity:', humid.toFixed(4) + '%RH');
-      setTimeout(loop, 300);
-      });
+          request.post(
+            'http://www.google.com',
+            { json: { key: 'value' } },
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    console.log(body)
+                }
+            });
+        });
     });
   });
-});
-
-climate.on('error', function(err) {
-  console.log('error connecting module', err);
-});
