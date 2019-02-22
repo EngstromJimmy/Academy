@@ -1,0 +1,10 @@
+post http://academynode.azurewebsites.net/api
+Content-Type: application/json
+
+{"location":"JimmyTest","temp":12.5,"hum":13.5}
+
+###
+post http://localhost:1337/Api
+Content-Type: application/json
+
+{"location":"Jimmy","temp":12.5,"hum":13.5}

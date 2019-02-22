@@ -1,0 +1,11 @@
+@html.extend('template',function (model){
+    @html.block("body",function (model){
+        <h1>The heat is on....!</h1>
+        <ul>
+        @model.temps.forEach((temp)=>
+        {
+            <li>@temp.LocationName - @temp.TemperatureInC - @temp.Humidity</li>
+        })
+        </ul>
+    })
+})
