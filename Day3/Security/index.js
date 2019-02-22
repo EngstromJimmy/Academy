@@ -2,8 +2,6 @@ const express=require("express");
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
 
-
-
 const app=express();
 const port =8080;
 
@@ -73,8 +71,6 @@ app.post('/login',(req,res)=>{
     failureRedirect: '/login',
     failureFlash: true})(req,res);
   });
-
-
 
 app.get("/register",(req,res)=>{
     
